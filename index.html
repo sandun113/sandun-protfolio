@@ -799,8 +799,8 @@
   </div>
 </div>
 
-  <!-- Contact -->
- <div class="social-grid">
+<!-- Contact -->
+<div class="social-grid">
   <a href="https://www.linkedin.com/feed/?trk=guest_homepage-basic_google-one-tap-submit" class="social-item" title="LinkedIn">
     <i class="fab fa-linkedin-in"></i>
   </a>
@@ -814,6 +814,45 @@
     <i class="fab fa-whatsapp"></i>
   </a>
 </div>
+
+<style>
+.social-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  flex-wrap: wrap;
+}
+
+.social-item {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.social-item:hover {
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.social-item i {
+  transition: transform 0.3s ease;
+}
+
+.social-item:hover i {
+  transform: rotate(360deg);
+}
+</style>
 
   <!-- Footer -->
   <footer>
