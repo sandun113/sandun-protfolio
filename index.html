@@ -80,6 +80,9 @@
       padding: 0 60px;
       display: flex;
       justify-content: space-between;
+      align-items: center;
+    }
+
     /* Drone videos styles */
     .drone-videos {
       max-width: 1400px;
@@ -115,8 +118,10 @@
         transform: translateY(0);
       }
     }
-      align-items: center;
-    }
+
+    /* Make service card anchor behave like card */
+    .service-link { display: block; color: inherit; text-decoration: none; }
+    .service-link:focus { outline: 3px solid rgba(0,212,255,0.12); outline-offset: 4px; }
     
     .brand {
       display: flex;
