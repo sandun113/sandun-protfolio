@@ -80,6 +80,41 @@
       padding: 0 60px;
       display: flex;
       justify-content: space-between;
+    /* Drone videos styles */
+    .drone-videos {
+      max-width: 1400px;
+      margin: 40px auto 0;
+      display: none;
+      animation: fadeSlide 0.6s ease;
+      padding: 0 60px 40px;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+
+    .video-grid video,
+    .video-grid iframe {
+      width: 100%;
+      height: 220px;
+      border-radius: 20px;
+      background: #000;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+      display: block;
+    }
+
+    @keyframes fadeSlide {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
       align-items: center;
     }
     
@@ -1140,41 +1175,34 @@
     </div>
   </header>
 
-<!-- Hero Section -->
-<section class="hero" id="home">
-  <div class="hero-grid">
-    <div class="hero-content">
-      <h1>
-        <span class="small-text">CAPTURING MOMENTS</span>
-        <span class="color-text">SANDUN DILHARA</span>
-      </h1>
-
-      <p class="subtitle">
-        Professional Photography & Drone Videography Services |
-        Creating stunning visual stories from ground to sky with cutting-edge technology and artistic vision
-      </p>
-
-      <div class="cta-buttons">
-        <a href="#portfolio" class="btn btn-primary">
-          <i class="fas fa-play-circle"></i>
-          View Portfolio
-        </a>
-        <a href="#contact" class="btn btn-outline">
-          <i class="fas fa-phone-alt"></i>
-          Get In Touch
-        </a>
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <h1>
+          <span class="small-text">CAPTURING MOMENTS</span>
+          <span class="color-text">SANDUN DILHARA</span>
+        </h1>
+        <p class="subtitle">Professional Photography & Drone Videography Services | Creating stunning visual stories from ground to sky with cutting-edge technology and artistic vision</p>
+        <div class="cta-buttons">
+          <a href="#portfolio" class="btn btn-primary">
+            <i class="fas fa-play-circle"></i>
+            View Portfolio
+          </a>
+          <a href="#contact" class="btn btn-outline">
+            <i class="fas fa-phone-alt"></i>
+            Get In Touch
+          </a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="image-container">
+          <img src="https://github.com/sandun113/images-21/blob/main/1.jpg?raw=true" alt="Sandun Dilhara Photography">
+        </div>
       </div>
     </div>
-
-    <div class="hero-visual">
-      <div class="image-container">
-        <img 
-          src="https://raw.githubusercontent.com/sandun113/sandun-protfolio/main/1.jpg" 
-          alt="Sandun Dilhara Photography">
-      </div>
-    </div>
-  </div>
-</section>
+    
+  </section>
 
   <!-- About Section -->
   <section class="section" id="about">
@@ -1247,7 +1275,7 @@
     </div>
     
     <div class="services-container">
-      <div class="service-card scroll-reveal">
+      <div class="service-card scroll-reveal" onclick="toggleDroneVideos()">
         <div class="service-icon">
           <i class="fas fa-helicopter"></i>
         </div>
@@ -1259,7 +1287,30 @@
           <li><i class="fas fa-check"></i> Licensed & Insured</li>
         </ul>
       </div>
-      
+
+    <!-- Drone Videos (Hidden by default) -->
+    <div class="drone-videos" id="droneVideos" style="display:none;">
+      <div class="video-grid">
+        <video controls poster="thumb1.jpg">
+          <source src="videos/drone1.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+
+        <video controls poster="thumb2.jpg">
+          <source src="videos/drone2.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+
+        <iframe 
+          src="https://www.youtube.com/embed/VIDEO_ID"
+          title="YouTube video"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
       <div class="service-card scroll-reveal">
         <div class="service-icon">
           <i class="fas fa-camera-retro"></i>
@@ -1443,7 +1494,7 @@
         <i class="fas fa-envelope"></i>
         Contact
       </span>
-      <h2>Let's Work Together</h2>
+      <h2>Let\'s Work Together</h2>
       <p>Ready to capture your story? Reach out to discuss your project and get a custom quote.</p>
     </div>
 
@@ -1452,17 +1503,17 @@
         <div class="contact-item">
           <i class="fas fa-phone-alt"></i>
           <h4>Phone</h4>
-          <p>+94 77 125 7840</p>
+          <p>+94 77 123 4567</p>
         </div>
         <div class="contact-item">
           <i class="fas fa-envelope"></i>
           <h4>Email</h4>
-          <p>hello@sandundilhara06@gmail.com</p>
+          <p>hello@sandundilhara.com</p>
         </div>
         <div class="contact-item">
           <i class="fas fa-map-marker-alt"></i>
           <h4>Location</h4>
-          <p>Maho, Sri Lanka</p>
+          <p>Colombo, Sri Lanka</p>
         </div>
       </div>
 
@@ -1488,6 +1539,18 @@
   <script>
     function toggleNav(){ document.getElementById('navMenu').classList.toggle('active'); }
     function closeNav(){ document.getElementById('navMenu').classList.remove('active'); }
+
+    function toggleDroneVideos(){
+      const section = document.getElementById('droneVideos');
+      if(!section) return;
+      const isShown = section.style.display === 'block';
+      section.style.display = isShown ? 'none' : 'block';
+      if(!isShown){
+        section.classList.remove('hide');
+        section.classList.add('show');
+      }
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
     // Scroll reveal
     const reveals = document.querySelectorAll('.scroll-reveal');
     const observer = new IntersectionObserver((entries)=> {
