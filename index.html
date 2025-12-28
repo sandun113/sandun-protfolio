@@ -1,70 +1,1554 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Drone Videos — Sandun Dilhara</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sandun Dilhara | Photography & Drone Videography</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    :root { --bg:#0a0e1a; --card:#1a1f35; --accent:#00d4ff; --text:#fff; }
-    body{margin:0;font-family:Montserrat,Segoe UI,system-ui,Arial;background:var(--bg);color:var(--text);}
-    header{padding:22px 40px;border-bottom:1px solid rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:space-between}
-    header a{color:var(--accent);text-decoration:none;font-weight:700}
-    .container{max-width:1200px;margin:40px auto;padding:0 20px}
-    h1{font-size:34px;margin-bottom:8px}
-    p.lead{color:#b8c2d6;margin-bottom:24px}
-    .video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
-    .video-grid video, .video-grid iframe{width:100%;height:260px;border-radius:12px;background:#000;box-shadow:0 12px 36px rgba(0,0,0,0.6);display:block}
-    .meta{display:flex;gap:12px;align-items:center;margin-top:14px}
-    .btn-back{background:transparent;border:2px solid var(--accent);color:var(--accent);padding:10px 14px;border-radius:10px;text-decoration:none}
-    footer{margin:60px 0 40px;color:#9aa6c4;text-align:center}
-    @media (max-width:480px){.video-grid video,.video-grid iframe{height:200px}}
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --primary: #00d4ff;
+      --secondary: #0099cc;
+      --accent: #00ffcc;
+      --gold: #ffd700;
+      --dark: #0a0e1a;
+      --darker: #050810;
+      --card: #1a1f35;
+      --text: #ffffff;
+      --text-dim: #b0b8cc;
+      --glow: rgba(0, 212, 255, 0.5);
+    }
+    
+    body {
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    /* Animated Background */
+    .animated-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 50%, #0d1428 100%);
+      overflow: hidden;
+    }
+    
+    .sky-element {
+      position: absolute;
+      background: radial-gradient(circle, var(--primary), transparent);
+      border-radius: 50%;
+      opacity: 0.15;
+      animation: float 20s infinite ease-in-out;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0) translateX(0) scale(1); }
+      25% { transform: translateY(-80px) translateX(50px) scale(1.1); }
+      50% { transform: translateY(-120px) translateX(-30px) scale(0.9); }
+      75% { transform: translateY(-60px) translateX(70px) scale(1.05); }
+    }
+    
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 25px 0;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    header.scrolled {
+      background: rgba(10, 14, 26, 0.98);
+      backdrop-filter: blur(25px);
+      padding: 18px 0;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+    }
+    
+    .nav-wrapper {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 60px;
+      display: flex;
+      justify-content: space-between;
+    /* Drone videos styles */
+    .drone-videos {
+      max-width: 1400px;
+      margin: 40px auto 0;
+      display: none;
+      animation: fadeSlide 0.6s ease;
+      padding: 0 60px 40px;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+
+    .video-grid video,
+    .video-grid iframe {
+      width: 100%;
+      height: 220px;
+      border-radius: 20px;
+      background: #000;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+      display: block;
+    }
+
+    @keyframes fadeSlide {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+      align-items: center;
+    }
+    
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      text-shadow: 0 0 30px var(--glow);
+    }
+    
+    .brand i {
+      font-size: 32px;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+    }
+    
+    .nav-menu {
+      display: flex;
+      gap: 50px;
+      list-style: none;
+    }
+    
+    .nav-menu a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      transition: all 0.3s;
+      position: relative;
+      padding: 8px 0;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .nav-menu a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transition: all 0.3s;
+      transform: translateX(-50%);
+      border-radius: 10px;
+      box-shadow: 0 0 10px var(--glow);
+    }
+    
+    .nav-menu a:hover {
+      color: var(--primary);
+    }
+    
+    .nav-menu a:hover::before {
+      width: 100%;
+    }
+    
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+    
+    .burger span {
+      width: 32px;
+      height: 3px;
+      background: var(--primary);
+      border-radius: 5px;
+      transition: all 0.3s;
+      box-shadow: 0 0 10px var(--glow);
+    }
+    
+    /* Hero Section */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 60px;
+      z-index: 1;
+    }
+    
+    .hero-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 120px;
+      align-items: center;
+    }
+    
+    .hero-content h1 {
+      font-size: 72px;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 35px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      opacity: 0;
+      animation: slideUp 1s forwards 0.3s;
+    }
+    
+    .hero-content h1 .small-text {
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--text-dim);
+      display: block;
+      margin-bottom: 15px;
+      letter-spacing: 4px;
+    }
+    
+    .color-text {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 30px var(--glow));
+    }
+    
+    .hero-content .subtitle {
+      font-size: 22px;
+      color: var(--text-dim);
+      margin-bottom: 50px;
+      font-weight: 400;
+      line-height: 1.7;
+      opacity: 0;
+      animation: slideUp 1s forwards 0.5s;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      gap: 25px;
+      opacity: 0;
+      animation: slideUp 1s forwards 0.7s;
+    }
+    
+    .btn {
+      padding: 18px 45px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 15px;
+      text-decoration: none;
+      transition: all 0.4s;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      box-shadow: 0 12px 45px rgba(0, 212, 255, 0.4);
+    }
+    
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.6s;
+    }
+    
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 60px rgba(0, 212, 255, 0.6);
+    }
+    
+    .btn-outline {
+      background: transparent;
+      color: var(--primary);
+      border: 3px solid var(--primary);
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+    }
+    
+    .btn-outline:hover {
+      background: var(--primary);
+      color: var(--dark);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 212, 255, 0.5);
+    }
+    
+    .hero-visual {
+      position: relative;
+      opacity: 0;
+      animation: fadeIn 1s forwards 0.5s;
+    }
+    
+    .image-container {
+      position: relative;
+      border-radius: 30px;
+      overflow: hidden;
+      transform: perspective(1000px) rotateY(-5deg);
+      transition: transform 0.6s;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+    }
+    
+    .image-container:hover {
+      transform: perspective(1000px) rotateY(0deg) scale(1.03);
+    }
+    
+    .image-container::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      background: linear-gradient(45deg, var(--primary), var(--accent), var(--gold));
+      z-index: -1;
+      filter: blur(25px);
+      animation: rotate 6s linear infinite;
+    }
+    
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    .image-container img {
+      width: 100%;
+      display: block;
+      border-radius: 30px;
+    }
+    
+    /* Sections */
+    .section {
+      position: relative;
+      z-index: 1;
+      padding: 140px 60px;
+    }
+    
+    .section-head {
+      text-align: center;
+      margin-bottom: 100px;
+    }
+    
+    .label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 35px;
+      background: rgba(0, 212, 255, 0.1);
+      border: 2px solid var(--primary);
+      border-radius: 50px;
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 30px;
+      box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
+    }
+    
+    .label i {
+      font-size: 16px;
+    }
+    
+    .section-head h2 {
+      font-size: 58px;
+      font-weight: 900;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    
+    .section-head p {
+      font-size: 20px;
+      color: var(--text-dim);
+      max-width: 750px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+    
+    /* Services Grid */
+    .services-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+    }
+    
+    .service-card {
+      background: var(--card);
+      padding: 55px 45px;
+      border-radius: 25px;
+      text-align: center;
+      transition: all 0.5s;
+      border: 2px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 255, 204, 0.1));
+      opacity: 0;
+      transition: opacity 0.5s;
+      z-index: 0;
+    }
+    
+    .service-card:hover::before {
+      opacity: 1;
+    }
+    
+    .service-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-15px);
+      box-shadow: 0 25px 60px rgba(0, 212, 255, 0.3);
+    }
+    
+    .service-icon {
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 30px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      transition: all 0.5s;
+      box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+    }
+    
+    .service-card:hover .service-icon {
+      transform: rotateY(360deg) scale(1.1);
+      box-shadow: 0 15px 50px rgba(0, 212, 255, 0.5);
+    }
+    
+    .service-icon i {
+      font-size: 40px;
+      color: white;
+    }
+    
+    .service-card h3 {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .service-card p {
+      color: var(--text-dim);
+      line-height: 1.8;
+      position: relative;
+      z-index: 1;
+      font-size: 15px;
+      margin-bottom: 25px;
+    }
+
+    .service-features {
+      list-style: none;
+      padding: 0;
+      margin-top: 25px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .service-features li {
+      color: var(--text-dim);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+    }
+
+    .service-features li i {
+      color: var(--accent);
+      font-size: 14px;
+    }
+
+    /* About Section Styles */
+    .about-content {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin-bottom: 80px;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 40px 20px;
+      background: var(--card);
+      border-radius: 20px;
+      border: 2px solid transparent;
+      transition: all 0.4s;
+    }
+
+    .stat-item:hover {
+      border-color: var(--primary);
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(0, 212, 255, 0.3);
+    }
+
+    .stat-number {
+      font-size: 52px;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 16px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+
+    .experience-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+    }
+
+    .experience-card {
+      background: var(--card);
+      padding: 45px;
+      border-radius: 25px;
+      border: 2px solid transparent;
+      transition: all 0.4s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .experience-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 255, 204, 0.1));
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .experience-card:hover::before {
+      opacity: 1;
+    }
+
+    .experience-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-10px);
+      box-shadow: 0 25px 60px rgba(0, 212, 255, 0.3);
+    }
+
+    .exp-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 25px;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+    }
+
+    .exp-icon i {
+      font-size: 32px;
+      color: white;
+    }
+
+    .experience-card h4 {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 15px;
+      position: relative;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .experience-card p {
+      color: var(--text-dim);
+      line-height: 1.8;
+      position: relative;
+      font-size: 15px;
+    }
+
+    /* Pricing Section */
+    .pricing-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 40px;
+    }
+
+    .pricing-card {
+      background: var(--card);
+      border-radius: 25px;
+      padding: 50px 40px;
+      border: 2px solid transparent;
+      transition: all 0.5s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pricing-card.featured {
+      border-color: var(--primary);
+      transform: scale(1.05);
+    }
+
+    .pricing-card.featured::after {
+      content: 'POPULAR';
+      position: absolute;
+      top: 30px;
+      right: -35px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      padding: 8px 45px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      transform: rotate(45deg);
+    }
+
+    .pricing-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-15px);
+      box-shadow: 0 30px 70px rgba(0, 212, 255, 0.4);
+    }
+
+    .pricing-card.featured:hover {
+      transform: scale(1.05) translateY(-15px);
+    }
+
+    .pricing-header {
+      text-align: center;
+      margin-bottom: 35px;
+      padding-bottom: 35px;
+      border-bottom: 2px solid rgba(0, 212, 255, 0.1);
+    }
+
+    .pricing-header h3 {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .pricing-amount {
+      font-size: 52px;
+      font-weight: 900;
+      color: var(--primary);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .pricing-amount span {
+      font-size: 20px;
+      color: var(--text-dim);
+      font-weight: 600;
+    }
+
+    .pricing-period {
+      color: var(--text-dim);
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .pricing-features {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 35px;
+    }
+
+    .pricing-features li {
+      padding: 15px 0;
+      color: var(--text-dim);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-size: 15px;
+      border-bottom: 1px solid rgba(0, 212, 255, 0.05);
+    }
+
+    .pricing-features li:last-child {
+      border-bottom: none;
+    }
+
+    .pricing-features li i {
+      color: var(--accent);
+      font-size: 18px;
+    }
+
+    .pricing-btn {
+      width: 100%;
+      padding: 18px;
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      cursor: pointer;
+      transition: all 0.4s;
+      text-decoration: none;
+      display: block;
+      text-align: center;
+    }
+
+    .pricing-btn:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0, 212, 255, 0.5);
+    }
+
+    .pricing-card.featured .pricing-btn {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      border: none;
+    }
+
+    .pricing-card.featured .pricing-btn:hover {
+      box-shadow: 0 15px 50px rgba(0, 212, 255, 0.6);
+    }
+    
+    /* Portfolio Grid */
+    .portfolio-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 45px;
+    }
+    
+    .portfolio-item {
+      background: var(--card);
+      border-radius: 25px;
+      overflow: hidden;
+      transition: all 0.5s;
+      border: 2px solid transparent;
+      position: relative;
+      cursor: pointer;
+    }
+    
+    .portfolio-item::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary), var(--accent), var(--gold));
+      transform: scaleX(0);
+      transition: transform 0.5s;
+    }
+    
+    .portfolio-item:hover {
+      border-color: var(--primary);
+      transform: translateY(-20px);
+      box-shadow: 0 35px 80px rgba(0, 0, 0, 0.6);
+    }
+    
+    .portfolio-item:hover::after {
+      transform: scaleX(1);
+    }
+    
+    .portfolio-header {
+      padding: 80px;
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(0, 255, 204, 0.15));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .portfolio-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, transparent 30%, var(--card) 100%);
+    }
+    
+    .portfolio-header i {
+      font-size: 80px;
+      color: var(--primary);
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 0 20px var(--glow));
+    }
+    
+    .portfolio-body {
+      padding: 45px;
+    }
+    
+    .portfolio-body h3 {
+      font-size: 26px;
+      margin-bottom: 18px;
+      font-weight: 800;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .portfolio-body p {
+      color: var(--text-dim);
+      margin-bottom: 35px;
+      line-height: 1.9;
+      font-size: 15px;
+    }
+    
+    .portfolio-btn {
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.4s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 14px;
+    }
+    
+    .portfolio-btn:hover {
+      gap: 18px;
+      color: var(--primary);
+    }
+    
+    .portfolio-btn i {
+      transition: transform 0.4s;
+    }
+    
+    .portfolio-btn:hover i {
+      transform: translateX(5px);
+    }
+    
+    /* Contact Section */
+    .contact-box {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin: 60px 0;
+    }
+    
+    .contact-item {
+      padding: 40px 30px;
+      background: var(--card);
+      border-radius: 20px;
+      border: 2px solid transparent;
+      transition: all 0.4s;
+    }
+    
+    .contact-item:hover {
+      border-color: var(--primary);
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(0, 212, 255, 0.3);
+    }
+    
+    .contact-item i {
+      font-size: 36px;
+      color: var(--primary);
+      margin-bottom: 20px;
+      display: block;
+    }
+    
+    .contact-item h4 {
+      font-size: 18px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .contact-item p {
+      color: var(--text-dim);
+      font-size: 15px;
+    }
+    
+    .social-grid {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin-top: 60px;
+    }
+    
+    .social-item {
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      background: var(--card);
+      border: 3px solid var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      color: var(--primary);
+      text-decoration: none;
+      transition: all 0.5s;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .social-item::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+    
+    .social-item:hover::before {
+      opacity: 1;
+    }
+    
+    .social-item:hover {
+      transform: translateY(-12px) rotate(360deg);
+      box-shadow: 0 15px 50px var(--glow);
+    }
+    
+    .social-item i {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .social-item:hover i {
+      color: white;
+    }
+    
+    /* Footer */
+    footer {
+      padding: 60px;
+      text-align: center;
+      color: var(--text-dim);
+      border-top: 2px solid rgba(0, 212, 255, 0.1);
+      margin-top: 120px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    footer p {
+      font-size: 15px;
+      letter-spacing: 1px;
+    }
+    
+    /* Animations */
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(60px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .scroll-reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Responsive */
+    @media (max-width: 1200px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 80px;
+      }
+      
+      .hero-content {
+        text-align: center;
+      }
+      
+      .cta-buttons {
+        justify-content: center;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .burger {
+        display: flex;
+      }
+      
+      .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 75%;
+        height: 100vh;
+        background: rgba(10, 14, 26, 0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 140px 50px;
+        gap: 45px;
+        transition: right 0.5s;
+        border-left: 2px solid var(--primary);
+      }
+      
+      .nav-menu.active {
+        right: 0;
+      }
+      
+      .hero {
+        padding: 140px 35px 80px;
+      }
+      
+      .hero-content h1 {
+        font-size: 48px;
+      }
+      
+      .hero-content h1 .small-text {
+        font-size: 20px;
+      }
+      
+      .section {
+        padding: 100px 35px;
+      }
+      
+      .section-head h2 {
+        font-size: 42px;
+      }
+      
+      .portfolio-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .services-container {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .hero-content h1 {
+        font-size: 38px;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+        width: 100%;
+      }
+      
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .nav-wrapper {
+        padding: 0 30px;
+      }
+    }
+    /* Social icons override (from provided snippet) */
+    .social-item {
+      width: 70px;
+      height: 70px;
+      aspect-ratio: 1 / 1;
+    }
+
+    .social-item i {
+      font-size: 28px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Mobile special fix (avoid icon stretch on iOS/mobile browsers) */
+    @media (max-width: 480px) {
+      .social-item {
+        width: 60px;
+        height: 60px;
+      }
+
+      .social-item i {
+        font-size: 24px;
+      }
+    }
   </style>
 </head>
 <body>
-  <header>
-    <div class="brand">
-      <a href="Index.html">&larr; Back to Home</a>
-    </div>
-    <div>
-      <a class="btn-back" href="Index.html">Home</a>
+  <!-- Animated Background -->
+  <div class="animated-bg" id="animatedBg"></div>
+
+  <!-- Header -->
+  <header id="header">
+    <div class="nav-wrapper">
+      <div class="brand">
+        <i class="fas fa-camera"></i>
+        DILHARA
+      </div>
+      <div class="burger" onclick="toggleNav()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#home" onclick="closeNav()">Home</a></li>
+        <li><a href="#about" onclick="closeNav()">About</a></li>
+        <li><a href="#services" onclick="closeNav()">Services</a></li>
+        <li><a href="drone.html" onclick="closeNav()">Drone Videos</a></li>
+        <li><a href="#pricing" onclick="closeNav()">Pricing</a></li>
+        <li><a href="#portfolio" onclick="closeNav()">Portfolio</a></li>
+        <li><a href="#contact" onclick="closeNav()">Contact</a></li>
+      </ul>
     </div>
   </header>
 
-  <main class="container">
-    <h1>Drone Videos</h1>
-    <p class="lead">A curated selection of aerial videos — local MP4 files and embedded YouTube examples. Click any video to play.</p>
-
-    <div class="video-grid">
-      <div>
-        <video controls poster="thumb1.jpg">
-          <source src="Fish Man Rowing.MOV" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-        <div class="meta"> <strong>Drone 1</strong> <span style="color:#8eaedf;">• 4K</span> </div>
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <h1>
+          <span class="small-text">CAPTURING MOMENTS</span>
+          <span class="color-text">SANDUN DILHARA</span>
+        </h1>
+        <p class="subtitle">Professional Photography & Drone Videography Services | Creating stunning visual stories from ground to sky with cutting-edge technology and artistic vision</p>
+        <div class="cta-buttons">
+          <a href="#portfolio" class="btn btn-primary">
+            <i class="fas fa-play-circle"></i>
+            View Portfolio
+          </a>
+          <a href="#contact" class="btn btn-outline">
+            <i class="fas fa-phone-alt"></i>
+            Get In Touch
+          </a>
+        </div>
       </div>
-
-      <div>
-        <video controls poster="thumb2.jpg">
-          <source src="Madiyawa Lake.MOV" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-        <div class="meta"> <strong>Drone 2</strong> <span style="color:#8eaedf;">• Cinematic</span> </div>
-      </div>
-
-      <div>
-        <video controls poster="thumb3.jpg">
-          <source src="The Beauty of an Evening.MOV" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-        <div class="meta"> <strong>Drone 3</strong> <span style="color:#8eaedf;">• 4K</span> </div>
+      <div class="hero-visual">
+        <div class="image-container">
+          <img src="https://github.com/sandun113/sandun-protfolio/blob/main/1.jpg?raw=true="Sandun Dilhara Photography">
+        </div>
       </div>
     </div>
+    
+  </section>
 
-  </main>
+  <!-- About Section -->
+  <section class="section" id="about">
+    <div class="section-head scroll-reveal">
+      <span class="label">
+        <i class="fas fa-user"></i>
+        About Me
+      </span>
+      <h2>Professional Visual Storyteller</h2>
+      <p>With over 5 years of experience in photography and drone videography, I transform moments into timeless visual narratives</p>
+    </div>
+    
+    <div class="about-content">
+      <div class="stats-grid">
+        <div class="stat-item scroll-reveal">
+          <div class="stat-number">500+</div>
+          <div class="stat-label">Projects Completed</div>
+        </div>
+        <div class="stat-item scroll-reveal">
+          <div class="stat-number">350+</div>
+          <div class="stat-label">Happy Clients</div>
+        </div>
+        <div class="stat-item scroll-reveal">
+          <div class="stat-number">5000+</div>
+          <div class="stat-label">Hours of Footage</div>
+        </div>
+        <div class="stat-item scroll-reveal">
+          <div class="stat-number">15+</div>
+          <div class="stat-label">Awards Won</div>
+        </div>
+      </div>
+
+      <div class="experience-grid">
+        <div class="experience-card scroll-reveal">
+          <div class="exp-icon">
+            <i class="fas fa-award"></i>
+          </div>
+          <h4>Certified Professional</h4>
+          <p>Licensed drone pilot with CAA certification and professional photography qualifications. Fully insured for commercial operations.</p>
+        </div>
+        
+        <div class="experience-card scroll-reveal">
+          <div class="exp-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <h4>Premium Equipment</h4>
+          <p>Latest DJI Mavic 3 Pro, Sony A7 IV, professional lighting, gimbals, and 4K video production gear for exceptional quality.</p>
+        </div>
+        
+        <div class="experience-card scroll-reveal">
+          <div class="exp-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <h4>Fast Turnaround</h4>
+          <p>Quick delivery without compromising quality. Standard projects delivered within 5-7 business days with rush options available.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="section" id="services">
+    <div class="section-head scroll-reveal">
+      <span class="label">
+        <i class="fas fa-star"></i>
+        What I Offer
+      </span>
+      <h2>Professional Services</h2>
+      <p>From aerial cinematography to ground-level photography, I deliver exceptional visual content that tells your story with creativity and precision</p>
+    </div>
+    
+    <div class="services-container">
+      <div class="service-card scroll-reveal" onclick="toggleDroneVideos()">
+        <div class="service-icon">
+          <i class="fas fa-helicopter"></i>
+        </div>
+        <h3>Drone Videography</h3>
+        <p>Breathtaking aerial footage captured with professional-grade drones. Perfect for real estate, events, documentaries, and promotional content.</p>
+        <p style="margin-top:12px"><a href="drone.html" class="portfolio-btn">View full drone videos page <i class="fas fa-arrow-right"></i></a></p>
+        <ul class="service-features">
+          <li><i class="fas fa-check"></i> 4K & 5.1K Resolution</li>
+          <li><i class="fas fa-check"></i> Cinematic Movements</li>
+          <li><i class="fas fa-check"></i> Licensed & Insured</li>
+        </ul>
+      </div>
+
+
+      <div class="service-card scroll-reveal">
+        <div class="service-icon">
+          <i class="fas fa-camera-retro"></i>
+        </div>
+        <h3>Event Photography</h3>
+        <p>Comprehensive coverage of weddings, corporate events, and special occasions. Every moment captured with artistic precision and attention to detail.</p>
+        <ul class="service-features">
+          <li><i class="fas fa-check"></i> Full-Day Coverage</li>
+          <li><i class="fas fa-check"></i> Professional Editing</li>
+          <li><i class="fas fa-check"></i> Online Gallery Delivery</li>
+        </ul>
+      </div>
+      
+      <div class="service-card scroll-reveal">
+        <div class="service-icon">
+          <i class="fas fa-video"></i>
+        </div>
+        <h3>Commercial Video</h3>
+        <p>High-quality video production for businesses, brands, and marketing campaigns. From concept to final edit, we bring your vision to life.</p>
+        <ul class="service-features">
+          <li><i class="fas fa-check"></i> Script Development</li>
+          <li><i class="fas fa-check"></i> Multi-Camera Setup</li>
+          <li><i class="fas fa-check"></i> Color Grading</li>
+        </ul>
+      </div>
+      
+      <div class="service-card scroll-reveal">
+        <div class="service-icon">
+          <i class="fas fa-portrait"></i>
+        </div>
+        <h3>Portrait Sessions</h3>
+        <p>Professional portrait photography for individuals, families, and corporate headshots. Studio or on-location shoots tailored to your needs.</p>
+        <ul class="service-features">
+          <li><i class="fas fa-check"></i> Studio & Outdoor</li>
+          <li><i class="fas fa-check"></i> Professional Retouching</li>
+          <li><i class="fas fa-check"></i> Print-Ready Files</li>
+        </ul>
+      </div>
+      
+      <div class="service-card scroll-reveal">
+        <div class="service-icon">
+          <i class="fas fa-home"></i>
+        </div>
+        <h3>Real Estate</h3>
+        <p>Showcase properties with stunning photography and aerial views. Help buyers see the full potential with professional visual marketing.</p>
+        <ul class="service-features">
+          <li><i class="fas fa-check"></i> Interior & Exterior</li>
+          <li><i class="fas fa-check"></i> Aerial Property Tours</li>
+          <li><i class="fas fa-check"></i> Virtual Staging</li>
+        </ul>
+      </div>
+      
+      <div class="service-card scroll-reveal">
+        <div class="service-icon">
+          <i class="fas fa-edit"></i>
+        </div>
+        <h3>Post-Production</h3>
+        <p>Expert editing, color grading, and retouching services. Transform raw footage into polished, professional content ready for any platform.</p>
+        <ul class="service-features">
+          <li><i class="fas fa-check"></i> Advanced Editing</li>
+          <li><i class="fas fa-check"></i> Sound Design</li>
+          <li><i class="fas fa-check"></i> Platform Optimization</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="section" id="pricing">
+    <div class="section-head scroll-reveal">
+      <span class="label">
+        <i class="fas fa-dollar-sign"></i>
+        Pricing Plans
+      </span>
+      <h2>Flexible Packages</h2>
+      <p>Choose the perfect package for your needs. All packages include professional editing and high-resolution delivery</p>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="pricing-card scroll-reveal">
+        <div class="pricing-header">
+          <h3>Basic Package</h3>
+          <div class="pricing-amount">$299<span>+</span></div>
+          <div class="pricing-period">Starting Price</div>
+        </div>
+        <ul class="pricing-features">
+          <li><i class="fas fa-check-circle"></i> 2 Hours Coverage</li>
+          <li><i class="fas fa-check-circle"></i> 50+ Edited Photos</li>
+          <li><i class="fas fa-check-circle"></i> Online Gallery</li>
+          <li><i class="fas fa-check-circle"></i> Basic Retouching</li>
+          <li><i class="fas fa-check-circle"></i> 7-Day Delivery</li>
+        </ul>
+        <a href="#contact" class="pricing-btn">Get Started</a>
+      </div>
+
+      <div class="pricing-card featured scroll-reveal">
+        <div class="pricing-header">
+          <h3>Professional</h3>
+          <div class="pricing-amount">$599<span>+</span></div>
+          <div class="pricing-period">Most Popular</div>
+        </div>
+        <ul class="pricing-features">
+          <li><i class="fas fa-check-circle"></i> 5 Hours Coverage</li>
+          <li><i class="fas fa-check-circle"></i> 150+ Edited Photos</li>
+          <li><i class="fas fa-check-circle"></i> Drone Footage Included</li>
+          <li><i class="fas fa-check-circle"></i> Advanced Retouching</li>
+          <li><i class="fas fa-check-circle"></i> 2-3 Minute Highlight Video</li>
+          <li><i class="fas fa-check-circle"></i> Print-Ready Files</li>
+          <li><i class="fas fa-check-circle"></i> 5-Day Delivery</li>
+        </ul>
+        <a href="#contact" class="pricing-btn">Get Started</a>
+      </div>
+
+      <div class="pricing-card scroll-reveal">
+        <div class="pricing-header">
+          <h3>Premium Package</h3>
+          <div class="pricing-amount">$999<span>+</span></div>
+          <div class="pricing-period">Ultimate Coverage</div>
+        </div>
+        <ul class="pricing-features">
+          <li><i class="fas fa-check-circle"></i> Full-Day Coverage</li>
+          <li><i class="fas fa-check-circle"></i> 300+ Edited Photos</li>
+          <li><i class="fas fa-check-circle"></i> Extended Drone Shots</li>
+          <li><i class="fas fa-check-circle"></i> Premium Retouching</li>
+          <li><i class="fas fa-check-circle"></i> 5-8 Minute Cinematic Video</li>
+          <li><i class="fas fa-check-circle"></i> Same-Day Edit Video</li>
+          <li><i class="fas fa-check-circle"></i> USB & Photo Album</li>
+          <li><i class="fas fa-check-circle"></i> 3-Day Rush Delivery</li>
+        </ul>
+        <a href="#contact" class="pricing-btn">Get Started</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section class="section" id="portfolio">
+    <div class="section-head scroll-reveal">
+      <span class="label">
+        <i class="fas fa-images"></i>
+        My Work
+      </span>
+      <h2>Featured Projects</h2>
+      <p>A showcase of recent photography and videography projects demonstrating technical excellence and creative storytelling</p>
+    </div>
+
+    <div class="portfolio-container">
+      <div class="portfolio-item scroll-reveal">
+        <div class="portfolio-header">
+          <i class="fas fa-mountain"></i>
+        </div>
+        <div class="portfolio-body">
+          <h3>Aerial Landscapes</h3>
+          <p>Stunning aerial cinematography capturing natural beauty from unique perspectives. Featuring mountain ranges, coastlines, and scenic vistas.</p>
+          <a href="#contact" class="portfolio-btn">
+            Book Session
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="portfolio-item scroll-reveal">
+        <div class="portfolio-header">
+          <i class="fas fa-ring"></i>
+        </div>
+        <div class="portfolio-body">
+          <h3>Product & Jewelry</h3>
+          <p>High-detail product and jewelry photography, capturing fine textures and reflective surfaces for ecommerce and catalogs.</p>
+          <a href="#contact" class="portfolio-btn">
+            Inquire
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section" id="contact">
+    <div class="section-head scroll-reveal">
+      <span class="label">
+        <i class="fas fa-envelope"></i>
+        Contact
+      </span>
+      <h2>Let\'s Work Together</h2>
+      <p>Ready to capture your story? Reach out to discuss your project and get a custom quote.</p>
+    </div>
+
+    <div class="contact-box scroll-reveal">
+      <div class="contact-info">
+        <div class="contact-item">
+          <i class="fas fa-phone-alt"></i>
+          <h4>Phone</h4>
+          <p>+94 77 123 4567</p>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <h4>Email</h4>
+          <p>hello@sandundilhara.com</p>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <h4>Location</h4>
+          <p>Colombo, Sri Lanka</p>
+        </div>
+      </div>
+
+<div class="social-grid">
+  <a href="#" class="social-item"><i class="fab fa-instagram"></i></a>
+  <a href="#" class="social-item"><i class="fab fa-facebook-f"></i></a>
+  <a href="#" class="social-item"><i class="fab fa-youtube"></i></a>
+
+  <!-- WhatsApp -->
+  <a href="https://wa.me/94741257840?text=Hello%20Sandun%2C%20I%20would%20like%20to%20book%20a%20shoot."
+     target="_blank"
+     class="social-item">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+</div>
+
+  </section>
 
   <footer>
-    © 2025 Sandun Dilhara — Drone Videography
+    <p>&copy; 2025 Sandun Dilhara. All rights reserved.</p>
   </footer>
+
+  <script>
+    function toggleNav(){ document.getElementById('navMenu').classList.toggle('active'); }
+    function closeNav(){ document.getElementById('navMenu').classList.remove('active'); }
+
+    function toggleDroneVideos(){
+      const section = document.getElementById('droneVideos');
+      if(!section) return;
+      const isShown = section.style.display === 'block';
+      section.style.display = isShown ? 'none' : 'block';
+      if(!isShown){
+        section.classList.remove('hide');
+        section.classList.add('show');
+      }
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.scroll-reveal');
+    const observer = new IntersectionObserver((entries)=> {
+      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
+    }, { threshold: 0.15 });
+    reveals.forEach(r => observer.observe(r));
+    // Animated background elements
+    const animatedBg = document.getElementById('animatedBg');
+    for(let i=0;i<8;i++){
+      const el = document.createElement('div');
+      el.className='sky-element';
+      const size = Math.random()*250+100;
+      el.style.width = el.style.height = size+'px';
+      el.style.left = Math.random()*100+'%';
+      el.style.top = Math.random()*100+'%';
+      el.style.animationDelay = (Math.random()*10)+'s';
+      animatedBg.appendChild(el);
+    }
+  </script>
 </body>
 </html>
