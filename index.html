@@ -246,129 +246,159 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      text-shadow: none;
+      filter: drop-shadow(0 0 30px var(--glow));
     }
     
-    .hero-content p {
-      font-size: 20px;
+    .hero-content .subtitle {
+      font-size: 22px;
       color: var(--text-dim);
-      margin-bottom: 45px;
-      line-height: 1.8;
+      margin-bottom: 50px;
+      font-weight: 400;
+      line-height: 1.7;
       opacity: 0;
-      animation: slideUp 1s forwards 0.6s;
+      animation: slideUp 1s forwards 0.5s;
     }
     
-    .hero-buttons {
+    .cta-buttons {
       display: flex;
       gap: 25px;
       opacity: 0;
-      animation: slideUp 1s forwards 0.9s;
+      animation: slideUp 1s forwards 0.7s;
     }
     
     .btn {
       padding: 18px 45px;
-      font-size: 17px;
-      font-weight: 700;
       border-radius: 50px;
+      font-weight: 700;
+      font-size: 15px;
       text-decoration: none;
-      transition: all 0.3s;
-      display: inline-block;
+      transition: all 0.4s;
       text-transform: uppercase;
-      letter-spacing: 2px;
-      border: 2px solid transparent;
+      letter-spacing: 1.5px;
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
     }
     
     .btn-primary {
       background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: var(--dark);
-      box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+      color: white;
+      box-shadow: 0 12px 45px rgba(0, 212, 255, 0.4);
+    }
+    
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.6s;
+    }
+    
+    .btn-primary:hover::before {
+      left: 100%;
     }
     
     .btn-primary:hover {
       transform: translateY(-4px);
-      box-shadow: 0 15px 40px rgba(0, 212, 255, 0.6);
+      box-shadow: 0 18px 60px rgba(0, 212, 255, 0.6);
     }
     
-    .btn-secondary {
+    .btn-outline {
       background: transparent;
       color: var(--primary);
-      border: 2px solid var(--primary);
+      border: 3px solid var(--primary);
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
     }
     
-    .btn-secondary:hover {
+    .btn-outline:hover {
       background: var(--primary);
       color: var(--dark);
       transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 212, 255, 0.5);
     }
     
-    .hero-image {
+    .hero-visual {
       position: relative;
       opacity: 0;
-      animation: slideUp 1s forwards 1.2s;
+      animation: fadeIn 1s forwards 0.5s;
     }
     
-    .hero-image::before {
+    .image-container {
+      position: relative;
+      border-radius: 30px;
+      overflow: hidden;
+      transform: perspective(1000px) rotateY(-5deg);
+      transition: transform 0.6s;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+    }
+    
+    .image-container:hover {
+      transform: perspective(1000px) rotateY(0deg) scale(1.03);
+    }
+    
+    .image-container::before {
       content: '';
       position: absolute;
-      inset: -30px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      border-radius: 30px;
-      opacity: 0.15;
+      inset: -3px;
+      background: linear-gradient(45deg, var(--primary), var(--accent), var(--gold));
       z-index: -1;
-      animation: glow 3s ease-in-out infinite;
+      filter: blur(25px);
+      animation: rotate 6s linear infinite;
     }
     
-    @keyframes glow {
-      0%, 100% { opacity: 0.15; transform: scale(1); }
-      50% { opacity: 0.25; transform: scale(1.05); }
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
     
-    .hero-image img {
+    .image-container img {
       width: 100%;
-      height: auto;
+      display: block;
       border-radius: 30px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
     }
     
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    /* Section Styling */
+    /* Sections */
     .section {
       position: relative;
-      padding: 120px 60px;
-      max-width: 1400px;
-      margin: 0 auto;
       z-index: 1;
+      padding: 140px 60px;
     }
     
     .section-head {
       text-align: center;
-      margin-bottom: 80px;
+      margin-bottom: 100px;
     }
     
     .label {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 12px 28px;
+      padding: 12px 35px;
       background: rgba(0, 212, 255, 0.1);
-      border: 2px solid rgba(0, 212, 255, 0.3);
+      border: 2px solid var(--primary);
       border-radius: 50px;
       color: var(--primary);
+      font-size: 13px;
       font-weight: 700;
-      font-size: 14px;
       text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 25px;
+      letter-spacing: 3px;
+      margin-bottom: 30px;
+      box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
+    }
+    
+    .label i {
+      font-size: 16px;
     }
     
     .section-head h2 {
       font-size: 58px;
       font-weight: 900;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
       text-transform: uppercase;
       letter-spacing: 2px;
     }
@@ -376,24 +406,27 @@
     .section-head p {
       font-size: 20px;
       color: var(--text-dim);
-      max-width: 800px;
+      max-width: 750px;
       margin: 0 auto;
-      line-height: 1.7;
+      line-height: 1.8;
     }
     
-    /* Service Cards */
-    .service-grid {
+    /* Services Grid */
+    .services-container {
+      max-width: 1400px;
+      margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 35px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
     }
     
     .service-card {
       background: var(--card);
+      padding: 55px 45px;
       border-radius: 25px;
-      padding: 50px 40px;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      border: 2px solid rgba(0, 212, 255, 0.1);
+      text-align: center;
+      transition: all 0.5s;
+      border: 2px solid transparent;
       position: relative;
       overflow: hidden;
     }
@@ -403,281 +436,502 @@
       position: absolute;
       top: 0;
       left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-      transform: scaleX(0);
-      transition: transform 0.4s;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 255, 204, 0.1));
+      opacity: 0;
+      transition: opacity 0.5s;
+      z-index: 0;
     }
     
     .service-card:hover::before {
-      transform: scaleX(1);
+      opacity: 1;
     }
     
     .service-card:hover {
-      transform: translateY(-12px);
       border-color: var(--primary);
-      box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3);
+      transform: translateY(-15px);
+      box-shadow: 0 25px 60px rgba(0, 212, 255, 0.3);
     }
     
     .service-icon {
-      width: 85px;
-      height: 85px;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      border-radius: 20px;
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 30px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 30px;
-      font-size: 38px;
-      color: var(--dark);
-      box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+      position: relative;
+      z-index: 1;
+      transition: all 0.5s;
+      box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+    }
+    
+    .service-card:hover .service-icon {
+      transform: rotateY(360deg) scale(1.1);
+      box-shadow: 0 15px 50px rgba(0, 212, 255, 0.5);
+    }
+    
+    .service-icon i {
+      font-size: 40px;
+      color: white;
     }
     
     .service-card h3 {
-      font-size: 28px;
-      margin-bottom: 18px;
+      font-size: 24px;
       font-weight: 800;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
       text-transform: uppercase;
       letter-spacing: 1px;
     }
     
     .service-card p {
       color: var(--text-dim);
+      line-height: 1.8;
+      position: relative;
+      z-index: 1;
+      font-size: 15px;
       margin-bottom: 25px;
-      font-size: 16px;
-      line-height: 1.7;
     }
-    
+
     .service-features {
       list-style: none;
       padding: 0;
+      margin-top: 25px;
+      position: relative;
+      z-index: 1;
     }
-    
+
     .service-features li {
-      padding: 12px 0;
+      color: var(--text-dim);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+    }
+
+    .service-features li i {
+      color: var(--accent);
+      font-size: 14px;
+    }
+
+    /* About Section Styles */
+    .about-content {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin-bottom: 80px;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 40px 20px;
+      background: var(--card);
+      border-radius: 20px;
+      border: 2px solid transparent;
+      transition: all 0.4s;
+    }
+
+    .stat-item:hover {
+      border-color: var(--primary);
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(0, 212, 255, 0.3);
+    }
+
+    .stat-number {
+      font-size: 52px;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 16px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+
+    .experience-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+    }
+
+    .experience-card {
+      background: var(--card);
+      padding: 45px;
+      border-radius: 25px;
+      border: 2px solid transparent;
+      transition: all 0.4s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .experience-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 255, 204, 0.1));
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .experience-card:hover::before {
+      opacity: 1;
+    }
+
+    .experience-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-10px);
+      box-shadow: 0 25px 60px rgba(0, 212, 255, 0.3);
+    }
+
+    .exp-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 25px;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+    }
+
+    .exp-icon i {
+      font-size: 32px;
+      color: white;
+    }
+
+    .experience-card h4 {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 15px;
+      position: relative;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .experience-card p {
+      color: var(--text-dim);
+      line-height: 1.8;
+      position: relative;
+      font-size: 15px;
+    }
+
+    /* Pricing Section */
+    .pricing-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 40px;
+    }
+
+    .pricing-card {
+      background: var(--card);
+      border-radius: 25px;
+      padding: 50px 40px;
+      border: 2px solid transparent;
+      transition: all 0.5s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pricing-card.featured {
+      border-color: var(--primary);
+      transform: scale(1.05);
+    }
+
+    .pricing-card.featured::after {
+      content: 'POPULAR';
+      position: absolute;
+      top: 30px;
+      right: -35px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      padding: 8px 45px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      transform: rotate(45deg);
+    }
+
+    .pricing-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-15px);
+      box-shadow: 0 30px 70px rgba(0, 212, 255, 0.4);
+    }
+
+    .pricing-card.featured:hover {
+      transform: scale(1.05) translateY(-15px);
+    }
+
+    .pricing-header {
+      text-align: center;
+      margin-bottom: 35px;
+      padding-bottom: 35px;
+      border-bottom: 2px solid rgba(0, 212, 255, 0.1);
+    }
+
+    .pricing-header h3 {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .pricing-amount {
+      font-size: 52px;
+      font-weight: 900;
+      color: var(--primary);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .pricing-amount span {
+      font-size: 20px;
+      color: var(--text-dim);
+      font-weight: 600;
+    }
+
+    .pricing-period {
+      color: var(--text-dim);
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .pricing-features {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 35px;
+    }
+
+    .pricing-features li {
+      padding: 15px 0;
       color: var(--text-dim);
       display: flex;
       align-items: center;
       gap: 15px;
       font-size: 15px;
+      border-bottom: 1px solid rgba(0, 212, 255, 0.05);
     }
-    
-    .service-features i {
-      color: var(--primary);
+
+    .pricing-features li:last-child {
+      border-bottom: none;
+    }
+
+    .pricing-features li i {
+      color: var(--accent);
       font-size: 18px;
     }
-    
-    /* Pricing Cards */
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 35px;
-      align-items: start;
-    }
-    
-    .pricing-card {
-      background: var(--card);
-      border-radius: 25px;
-      padding: 50px 40px;
-      border: 2px solid rgba(0, 212, 255, 0.1);
-      transition: all 0.4s;
-      position: relative;
-    }
-    
-    .pricing-card.featured {
-      border-color: var(--primary);
-      transform: scale(1.05);
-      box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3);
-    }
-    
-    .pricing-card:hover {
-      transform: translateY(-12px) scale(1.02);
-      border-color: var(--primary);
-      box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3);
-    }
-    
-    .pricing-card.featured:hover {
-      transform: translateY(-12px) scale(1.07);
-    }
-    
-    .pricing-header {
-      text-align: center;
-      padding-bottom: 35px;
-      border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-      margin-bottom: 35px;
-    }
-    
-    .pricing-header h3 {
-      font-size: 24px;
-      margin-bottom: 20px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-    }
-    
-    .pricing-amount {
-      font-size: 58px;
-      font-weight: 900;
-      color: var(--primary);
-      margin-bottom: 10px;
-    }
-    
-    .pricing-amount span {
-      font-size: 32px;
-      color: var(--text-dim);
-    }
-    
-    .pricing-period {
-      color: var(--text-dim);
-      font-size: 16px;
-    }
-    
-    .pricing-features {
-      list-style: none;
-      margin-bottom: 40px;
-    }
-    
-    .pricing-features li {
-      padding: 15px 0;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      color: var(--text-dim);
-      font-size: 16px;
-    }
-    
-    .pricing-features i {
-      color: var(--primary);
-      font-size: 20px;
-    }
-    
+
     .pricing-btn {
-      display: block;
-      text-align: center;
+      width: 100%;
       padding: 18px;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: var(--dark);
-      text-decoration: none;
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
       border-radius: 50px;
       font-weight: 700;
-      font-size: 17px;
+      font-size: 15px;
       text-transform: uppercase;
-      letter-spacing: 2px;
-      transition: all 0.3s;
+      letter-spacing: 1.5px;
+      cursor: pointer;
+      transition: all 0.4s;
+      text-decoration: none;
+      display: block;
+      text-align: center;
     }
-    
+
     .pricing-btn:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 15px 40px rgba(0, 212, 255, 0.6);
+      background: var(--primary);
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0, 212, 255, 0.5);
+    }
+
+    .pricing-card.featured .pricing-btn {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      border: none;
+    }
+
+    .pricing-card.featured .pricing-btn:hover {
+      box-shadow: 0 15px 50px rgba(0, 212, 255, 0.6);
     }
     
-    /* Portfolio */
+    /* Portfolio Grid */
     .portfolio-container {
+      max-width: 1400px;
+      margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: 35px;
+      gap: 45px;
     }
     
     .portfolio-item {
       background: var(--card);
       border-radius: 25px;
       overflow: hidden;
-      border: 2px solid rgba(0, 212, 255, 0.1);
-      transition: all 0.4s;
+      transition: all 0.5s;
+      border: 2px solid transparent;
+      position: relative;
+      cursor: pointer;
+    }
+    
+    .portfolio-item::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary), var(--accent), var(--gold));
+      transform: scaleX(0);
+      transition: transform 0.5s;
     }
     
     .portfolio-item:hover {
-      transform: translateY(-12px);
       border-color: var(--primary);
-      box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3);
+      transform: translateY(-20px);
+      box-shadow: 0 35px 80px rgba(0, 0, 0, 0.6);
+    }
+    
+    .portfolio-item:hover::after {
+      transform: scaleX(1);
     }
     
     .portfolio-header {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      padding: 80px 40px;
+      padding: 80px;
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(0, 255, 204, 0.15));
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 70px;
-      color: var(--dark);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .portfolio-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, transparent 30%, var(--card) 100%);
+    }
+    
+    .portfolio-header i {
+      font-size: 80px;
+      color: var(--primary);
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 0 20px var(--glow));
     }
     
     .portfolio-body {
-      padding: 40px;
+      padding: 45px;
     }
     
     .portfolio-body h3 {
-      font-size: 28px;
+      font-size: 26px;
       margin-bottom: 18px;
+      font-weight: 800;
+      color: var(--primary);
       text-transform: uppercase;
       letter-spacing: 1px;
     }
     
     .portfolio-body p {
       color: var(--text-dim);
-      margin-bottom: 30px;
-      line-height: 1.7;
+      margin-bottom: 35px;
+      line-height: 1.9;
+      font-size: 15px;
     }
     
     .portfolio-btn {
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      padding: 14px 32px;
-      background: transparent;
-      border: 2px solid var(--primary);
-      color: var(--primary);
-      text-decoration: none;
-      border-radius: 50px;
-      font-weight: 700;
-      transition: all 0.3s;
+      transition: all 0.4s;
       text-transform: uppercase;
       letter-spacing: 1px;
+      font-size: 14px;
     }
     
     .portfolio-btn:hover {
-      background: var(--primary);
-      color: var(--dark);
-      transform: translateX(8px);
+      gap: 18px;
+      color: var(--primary);
+    }
+    
+    .portfolio-btn i {
+      transition: transform 0.4s;
+    }
+    
+    .portfolio-btn:hover i {
+      transform: translateX(5px);
     }
     
     /* Contact Section */
     .contact-box {
-      background: var(--card);
-      border-radius: 25px;
-      padding: 60px;
-      border: 2px solid rgba(0, 212, 255, 0.1);
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
     }
     
     .contact-info {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 40px;
-      margin-bottom: 50px;
+      gap: 30px;
+      margin: 60px 0;
     }
     
     .contact-item {
-      text-align: center;
-      padding: 30px;
-      background: rgba(0, 212, 255, 0.05);
+      padding: 40px 30px;
+      background: var(--card);
       border-radius: 20px;
-      border: 2px solid rgba(0, 212, 255, 0.1);
-      transition: all 0.3s;
+      border: 2px solid transparent;
+      transition: all 0.4s;
     }
     
     .contact-item:hover {
       border-color: var(--primary);
-      transform: translateY(-8px);
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(0, 212, 255, 0.3);
     }
     
     .contact-item i {
-      font-size: 42px;
+      font-size: 36px;
       color: var(--primary);
       margin-bottom: 20px;
+      display: block;
     }
     
     .contact-item h4 {
-      font-size: 20px;
+      font-size: 18px;
       margin-bottom: 12px;
       text-transform: uppercase;
       letter-spacing: 1px;
@@ -685,61 +939,96 @@
     
     .contact-item p {
       color: var(--text-dim);
-      font-size: 16px;
-    }
-    
-    .contact-item a {
-      color: var(--text-dim);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    
-    .contact-item a:hover {
-      color: var(--primary);
+      font-size: 15px;
     }
     
     .social-grid {
       display: flex;
       justify-content: center;
       gap: 25px;
+      margin-top: 60px;
     }
     
     .social-item {
-      width: 65px;
-      height: 65px;
-      background: rgba(0, 212, 255, 0.1);
-      border: 2px solid rgba(0, 212, 255, 0.3);
+      width: 75px;
+      height: 75px;
       border-radius: 50%;
+      background: var(--card);
+      border: 3px solid var(--primary);
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: 30px;
       color: var(--primary);
-      font-size: 28px;
       text-decoration: none;
-      transition: all 0.3s;
+      transition: all 0.5s;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .social-item::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+    
+    .social-item:hover::before {
+      opacity: 1;
     }
     
     .social-item:hover {
-      background: var(--primary);
-      color: var(--dark);
-      transform: translateY(-8px) scale(1.1);
-      box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+      transform: translateY(-12px) rotate(360deg);
+      box-shadow: 0 15px 50px var(--glow);
     }
     
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 40px 60px;
-      color: var(--text-dim);
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    .social-item i {
       position: relative;
       z-index: 1;
     }
     
-    /* Scroll Reveal */
+    .social-item:hover i {
+      color: white;
+    }
+    
+    /* Footer */
+    footer {
+      padding: 60px;
+      text-align: center;
+      color: var(--text-dim);
+      border-top: 2px solid rgba(0, 212, 255, 0.1);
+      margin-top: 120px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    footer p {
+      font-size: 15px;
+      letter-spacing: 1px;
+    }
+    
+    /* Animations */
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(60px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    
     .scroll-reveal {
       opacity: 0;
-      transform: translateY(50px);
+      transform: translateY(60px);
       transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
@@ -748,160 +1037,234 @@
       transform: translateY(0);
     }
     
-    /* Mobile Responsive */
-    @media (max-width: 1024px) {
+    /* Responsive */
+    @media (max-width: 1200px) {
       .hero-grid {
         grid-template-columns: 1fr;
-        gap: 60px;
+        gap: 80px;
       }
       
-      .hero-content h1 {
-        font-size: 52px;
+      .hero-content {
+        text-align: center;
       }
       
-      .section-head h2 {
-        font-size: 42px;
+      .cta-buttons {
+        justify-content: center;
       }
     }
     
     @media (max-width: 768px) {
-      .nav-wrapper {
-        padding: 0 30px;
+      .burger {
+        display: flex;
       }
       
       .nav-menu {
         position: fixed;
         top: 0;
         right: -100%;
-        width: 300px;
+        width: 75%;
         height: 100vh;
         background: rgba(10, 14, 26, 0.98);
-        backdrop-filter: blur(25px);
+        backdrop-filter: blur(20px);
         flex-direction: column;
-        padding: 100px 40px;
-        gap: 30px;
-        transition: right 0.4s;
-        border-left: 1px solid rgba(0, 212, 255, 0.2);
+        padding: 140px 50px;
+        gap: 45px;
+        transition: right 0.5s;
+        border-left: 2px solid var(--primary);
       }
       
       .nav-menu.active {
         right: 0;
       }
       
-      .burger {
-        display: flex;
-      }
-      
       .hero {
-        padding: 100px 30px;
+        padding: 140px 35px 80px;
       }
       
       .hero-content h1 {
-        font-size: 38px;
+        font-size: 48px;
       }
       
-      .hero-content p {
-        font-size: 17px;
-      }
-      
-      .hero-buttons {
-        flex-direction: column;
+      .hero-content h1 .small-text {
+        font-size: 20px;
       }
       
       .section {
-        padding: 80px 30px;
+        padding: 100px 35px;
       }
       
       .section-head h2 {
-        font-size: 32px;
+        font-size: 42px;
       }
       
-      .service-grid,
-      .pricing-grid,
       .portfolio-container {
         grid-template-columns: 1fr;
       }
       
-      .pricing-card.featured {
-        transform: scale(1);
-      }
-      
-      .contact-box {
-        padding: 40px 30px;
+      .services-container {
+        grid-template-columns: 1fr;
       }
     }
     
     @media (max-width: 480px) {
-      .brand {
-        font-size: 20px;
-      }
-      
       .hero-content h1 {
-        font-size: 32px;
+        font-size: 38px;
       }
       
-      .hero-content h1 .small-text {
-        font-size: 18px;
+      .cta-buttons {
+        flex-direction: column;
+        width: 100%;
       }
       
       .btn {
-        padding: 14px 32px;
-        font-size: 14px;
+        width: 100%;
+        justify-content: center;
       }
       
-      .section-head h2 {
-        font-size: 28px;
+      .nav-wrapper {
+        padding: 0 30px;
       }
-      
-      .pricing-amount {
-        font-size: 42px;
+    }
+    /* Social icons override (from provided snippet) */
+    .social-item {
+      width: 70px;
+      height: 70px;
+      aspect-ratio: 1 / 1;
+    }
+
+    .social-item i {
+      font-size: 28px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Mobile special fix (avoid icon stretch on iOS/mobile browsers) */
+    @media (max-width: 480px) {
+      .social-item {
+        width: 60px;
+        height: 60px;
+      }
+
+      .social-item i {
+        font-size: 24px;
       }
     }
   </style>
 </head>
 <body>
+  <!-- Animated Background -->
   <div class="animated-bg" id="animatedBg"></div>
 
+  <!-- Header -->
   <header id="header">
     <div class="nav-wrapper">
       <div class="brand">
-        <i class="fas fa-camera-retro"></i>
-        <span>Sandun</span>
+        <i class="fas fa-camera"></i>
+        DILHARA
       </div>
-      <nav>
-        <ul class="nav-menu" id="navMenu">
-          <li><a href="#home" onclick="closeNav()">Home</a></li>
-          <li><a href="#services" onclick="closeNav()">Services</a></li>
-          <li><a href="#pricing" onclick="closeNav()">Pricing</a></li>
-          <li><a href="#portfolio" onclick="closeNav()">Portfolio</a></li>
-          <li><a href="drone.html">Drone Videos</a></li>
-          <li><a href="#contact" onclick="closeNav()">Contact</a></li>
-        </ul>
-      </nav>
       <div class="burger" onclick="toggleNav()">
         <span></span>
         <span></span>
         <span></span>
       </div>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#home" onclick="closeNav()">Home</a></li>
+        <li><a href="#about" onclick="closeNav()">About</a></li>
+        <li><a href="#services" onclick="closeNav()">Services</a></li>
+        <li><a href="drone.html" onclick="closeNav()">Drone Videos</a></li>
+        <li><a href="#pricing" onclick="closeNav()">Pricing</a></li>
+        <li><a href="#portfolio" onclick="closeNav()">Portfolio</a></li>
+        <li><a href="#contact" onclick="closeNav()">Contact</a></li>
+      </ul>
     </div>
   </header>
 
+  <!-- Hero Section -->
   <section class="hero" id="home">
     <div class="hero-grid">
       <div class="hero-content">
         <h1>
-          <span class="small-text">Welcome to</span>
-          <span class="color-text">Professional</span>
-          Photography
+          <span class="small-text">CAPTURING MOMENTS</span>
+          <span class="color-text">SANDUN DILHARA</span>
         </h1>
-        <p>Capturing moments that last a lifetime. From stunning aerial drone shots to intimate portraits, we bring your vision to life with creativity and precision.</p>
-        <div class="hero-buttons">
-          <a href="#contact" class="btn btn-primary">Book a Session</a>
-          <a href="#portfolio" class="btn btn-secondary">View Work</a>
+        <p class="subtitle">Professional Photography & Drone Videography Services | Creating stunning visual stories from ground to sky with cutting-edge technology and artistic vision</p>
+        <div class="cta-buttons">
+          <a href="#portfolio" class="btn btn-primary">
+            <i class="fas fa-play-circle"></i>
+            View Portfolio
+          </a>
+          <a href="#contact" class="btn btn-outline">
+            <i class="fas fa-phone-alt"></i>
+            Get In Touch
+          </a>
         </div>
       </div>
-      <div class="hero-image">
-        <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800" alt="Professional Camera">
+      <div class="hero-visual">
+        <div class="image-container">
+          <img src="https://github.com/sandun113/sandun-protfolio/blob/main/1.jpg?raw=true="Sandun Dilhara Photography">
+        </div>
+      </div>
+    </div>
+    
+  </section>
+
+  <!-- About Section -->
+  <section class="section" id="about">
+    <div class="section-head scroll-reveal">
+      <span class="label">
+        <i class="fas fa-user"></i>
+        About Me
+      </span>
+      <h2>Professional Visual Storyteller</h2>
+      <p>With over 5 years of experience in photography and drone videography, I transform moments into timeless visual narratives</p>
+    </div>
+    
+    <div class="about-content">
+      <div class="stats-grid">
+        <div class="stat-item scroll-reveal">
+          <div class="stat-number">500+</div>
+          <div class="stat-label">Projects Completed</div>
+        </div>
+        <div class="stat-item scroll-reveal">
+          <div class="stat-number">350+</div>
+          <div class="stat-label">Happy Clients</div>
+        </div>
+        <div class="stat-item scroll-reveal">
+          <div class="stat-number">5000+</div>
+          <div class="stat-label">Hours of Footage</div>
+        </div>
+        <div class="stat-item scroll-reveal">
+          <div class="stat-number">15+</div>
+          <div class="stat-label">Awards Won</div>
+        </div>
+      </div>
+
+      <div class="experience-grid">
+        <div class="experience-card scroll-reveal">
+          <div class="exp-icon">
+            <i class="fas fa-award"></i>
+          </div>
+          <h4>Certified Professional</h4>
+          <p>Licensed drone pilot with CAA certification and professional photography qualifications. Fully insured for commercial operations.</p>
+        </div>
+        
+        <div class="experience-card scroll-reveal">
+          <div class="exp-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <h4>Premium Equipment</h4>
+          <p>Latest DJI Mavic 3 Pro, Sony A7 IV, professional lighting, gimbals, and 4K video production gear for exceptional quality.</p>
+        </div>
+        
+        <div class="experience-card scroll-reveal">
+          <div class="exp-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <h4>Fast Turnaround</h4>
+          <p>Quick delivery without compromising quality. Standard projects delivered within 5-7 business days with rush options available.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -910,33 +1273,35 @@
   <section class="section" id="services">
     <div class="section-head scroll-reveal">
       <span class="label">
-        <i class="fas fa-concierge-bell"></i>
+        <i class="fas fa-star"></i>
         What I Offer
       </span>
-      <h2>Services</h2>
-      <p>Comprehensive photography and videography solutions tailored to your unique needs</p>
+      <h2>Professional Services</h2>
+      <p>From aerial cinematography to ground-level photography, I deliver exceptional visual content that tells your story with creativity and precision</p>
     </div>
-
-    <div class="service-grid">
-      <div class="service-card scroll-reveal">
+    
+    <div class="services-container">
+      <div class="service-card scroll-reveal" onclick="location.href='drone.html'">
         <div class="service-icon">
           <i class="fas fa-helicopter"></i>
         </div>
         <h3>Drone Videography</h3>
-        <p>Breathtaking aerial perspectives that showcase your property, event, or landscape from stunning new angles. Professional-grade drone cinematography.</p>
+        <p>Breathtaking aerial footage captured with professional-grade drones. Perfect for real estate, events, documentaries, and promotional content.</p>
+        <p style="margin-top:12px"><a href="drone.html" class="portfolio-btn">View full drone videos page <i class="fas fa-arrow-right"></i></a></p>
         <ul class="service-features">
-          <li><i class="fas fa-check"></i> 4K Ultra HD Quality</li>
-          <li><i class="fas fa-check"></i> Licensed Operator</li>
-          <li><i class="fas fa-check"></i> Cinematic Editing</li>
+          <li><i class="fas fa-check"></i> 4K & 5.1K Resolution</li>
+          <li><i class="fas fa-check"></i> Cinematic Movements</li>
+          <li><i class="fas fa-check"></i> Licensed & Insured</li>
         </ul>
       </div>
-      
+
+
       <div class="service-card scroll-reveal">
         <div class="service-icon">
-          <i class="fas fa-ring"></i>
+          <i class="fas fa-camera-retro"></i>
         </div>
-        <h3>Wedding Photography</h3>
-        <p>Your special day deserves to be captured perfectly. We document every precious moment with artistry, emotion, and attention to detail.</p>
+        <h3>Event Photography</h3>
+        <p>Comprehensive coverage of weddings, corporate events, and special occasions. Every moment captured with artistic precision and attention to detail.</p>
         <ul class="service-features">
           <li><i class="fas fa-check"></i> Full-Day Coverage</li>
           <li><i class="fas fa-check"></i> Professional Editing</li>
@@ -1114,7 +1479,7 @@
         <i class="fas fa-envelope"></i>
         Contact
       </span>
-      <h2>Let's Work Together</h2>
+      <h2>Let\'s Work Together</h2>
       <p>Ready to capture your story? Reach out to discuss your project and get a custom quote.</p>
     </div>
 
@@ -1128,7 +1493,7 @@
         <div class="contact-item">
           <i class="fas fa-envelope"></i>
           <h4>Email</h4>
-          <p><a href="mailto:contact@sandundilhara.com">contact@sandundilhara.com</a></p>
+          <p>hello@sandundilhara.com</p>
         </div>
         <div class="contact-item">
           <i class="fas fa-map-marker-alt"></i>
@@ -1186,13 +1551,9 @@
       el.style.width = el.style.height = size+'px';
       el.style.left = Math.random()*100+'%';
       el.style.top = Math.random()*100+'%';
-      el.style.animationDelay = (Math.random()*5)+'s';
+      el.style.animationDelay = (Math.random()*10)+'s';
       animatedBg.appendChild(el);
     }
-    // Header scroll effect
-    window.addEventListener('scroll', ()=> {
-      document.getElementById('header').classList.toggle('scrolled', window.scrollY>50);
-    });
   </script>
 </body>
 </html>
